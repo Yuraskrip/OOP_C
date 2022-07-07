@@ -25,9 +25,26 @@ namespace OOP_C
             Type = type;
             
         }
-        public string CheckNumber { get; set; }
-        public decimal Balans { get; set; }
-        public CheckType Type { get; set; }
+
+        private Bank(decimal balans)
+        {
+            CheckNumber = GetNextId().ToString();
+            Balans = balans;
+
+        }
+
+        private Bank( CheckType type)
+        {
+            CheckNumber = GetNextId().ToString();
+            Type = type;
+
+        }
+
+
+
+        public string CheckNumber;
+        public decimal Balans;
+        public CheckType Type;
 
 
         public static int number = 1;
@@ -49,12 +66,10 @@ namespace OOP_C
           
             Bank bank = new Bank("ы", 80000000, CheckType.Savings);
             Console.WriteLine(bank);
-             bank = new Bank("ы", 30000000, CheckType.Current);
+             bank = new Bank(CheckType.Current);
             Console.WriteLine(bank);
-             bank = new Bank("ы", 25000000, CheckType.Savings);
-            
+             bank = new Bank(25000000);
             Console.WriteLine(bank);
-
             Console.ReadLine(); 
         }
 
