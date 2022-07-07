@@ -20,7 +20,7 @@ namespace OOP_C
         /// <param name="type">Тип банковского счета</param>
         private Bank(string checkNumber, decimal balans, CheckType type)
         {
-            CheckNumber = GetNextId().ToString();
+            CheckNumber = number.ToString();
             Balans = balans;
             Type = type;
             
@@ -28,35 +28,27 @@ namespace OOP_C
 
         private Bank(decimal balans)
         {
-            CheckNumber = GetNextId().ToString();
+            CheckNumber = number.ToString();
             Balans = balans;
 
         }
 
         private Bank( CheckType type)
         {
-            CheckNumber = GetNextId().ToString();
+            CheckNumber = number.ToString();
             Type = type;
 
         }
 
 
 
-        public string CheckNumber;
-        public decimal Balans;
-        public CheckType Type;
+        public string CheckNumber { get; set; }
+        public decimal Balans { get; set; }
+        public CheckType Type { get; set; }
 
 
-        public static int number = 1;
-        /// <summary>
-        /// Увеличение значения переменной
-        /// </summary>
-        /// <returns></returns>
-        public int GetNextId()
-        {
-            return number++;
-        }
-
+        public static int number { get { return Num++; }  set { Num = value; } }
+        private static int Num = 1;
        
         public override string ToString() => $"CheckNumber - {CheckNumber}, Balans - {Balans}, Type - {Type}";
 
