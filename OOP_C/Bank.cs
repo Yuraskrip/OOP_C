@@ -122,29 +122,13 @@ namespace OOP_C
             }
         }
 
-        /// <summary>
-        /// Реверс строки
-        /// </summary>
-        /// <param name="s"></param>
-        /// <returns></returns>
-        public static string ReverseString(string s)
-        {
-            Console.WriteLine("Введите строку");
-            s = Console.ReadLine();
-
-            char[] arr = s.ToCharArray();
-            Array.Reverse(arr);
-            Console.WriteLine(arr);
-            Console.ReadLine();
-            return new string(arr);
-            
-        }
+       
 
         public static void Main(string[] args)
         {
            
             Console.WriteLine("============================================================");
-            Console.WriteLine("Для банковских операций нажмите 1\nДля реверса строки нажмите 2");
+            Console.WriteLine("Для банковских операций нажмите 1\nДля реверса строки нажмите 2\nДля других операций со строками нажмите 3");
             string d = Console.ReadLine();
             
             switch (d)
@@ -208,24 +192,18 @@ namespace OOP_C
                             case "3": bank.Perevod(ref bank, sum, sum, ref bank1, ref bank2, ref bank3);
                             break;
                     }
-
-
                     Console.WriteLine(bank);
                     Console.ReadLine();
-
-
                     break;
                 case "2":
                     Console.Clear();
-                    ReverseString("s");
+                    STR1.ReverseString("s");
                     break;
+                //case "3":
+                //    STR1.SearchMail(ref st);
+                //    break;
             }
 
-
-           
-
-
-            
         }
 
     }
