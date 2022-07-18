@@ -1,4 +1,5 @@
-﻿
+﻿using System.IO;
+
 namespace OOP_C
 {
     /// <summary>
@@ -13,9 +14,10 @@ namespace OOP_C
         /// <returns></returns>
         public static string ReverseString(string s)
         {
-            Console.WriteLine("Введите строку");
-            s = Console.ReadLine();
-
+          if (s == null)
+            {
+                return null;
+            }
             char[] arr = s.ToCharArray();
             Array.Reverse(arr);
             Console.WriteLine(arr);
@@ -23,32 +25,30 @@ namespace OOP_C
             return new string(arr);
 
         }
-
-        public static string St()
+      /// <summary>
+      /// Разделение строки
+      /// </summary>
+      /// <param name="s"></param>
+        public static void SearchMail(ref string s)
         {
-            string st = "Кучма Андрей Витальевич & Kuchma @mail.ru Мизинцев Павел Николаевич & Pasha @mail.ru";
-            Console.WriteLine(st);
-
-            return (st);
+            s = s.Split("&")[1];
         }
         /// <summary>
-        /// Разделение текста
+        /// Вывод списка e-mail в новый файл
         /// </summary>
-        /// <param name="st"></param>
-        public void SearchMail(ref string st)
+        public static void SpisokEmail()
         {
-            string[] email = st.Split(new char[] { '&' });
-
-            for (int i = 0; i < email.Length; i++)
+            string sosiska = "../../../../Email.txt";
+            File.Delete(sosiska);
+            string[] lines = File.ReadAllLines("../../../../firstEmail.txt");
+            for (int i = 0; i < lines.Length; i++)
             {
-                email[i] = email.Length.ToString();
-                email = new string[email.Length];
-                Console.WriteLine(email);
+                string line = lines[i];
+                SearchMail(ref line);
+                File.AppendAllText(sosiska, line.Trim() + "\n");
             }
-
+            
         }
-
-
 
 
     }

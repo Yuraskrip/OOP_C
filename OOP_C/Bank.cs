@@ -10,7 +10,7 @@ namespace OOP_C
         Current,
         Savings
     }
-    internal class Bank
+    public class Bank
     {
         /// <summary>
         /// Создание класса объекта с закрытыми полями
@@ -18,7 +18,7 @@ namespace OOP_C
         /// <param name="checkNumber">Номер счета</param>
         /// <param name="balans">Баланс</param>
         /// <param name="type">Тип банковского счета</param>
-        private Bank(string checkNumber, decimal balans, CheckType type)
+        public Bank(string checkNumber, decimal balans, CheckType type)
         {
             CheckNumber = Number.ToString();
             Balans = balans;
@@ -26,14 +26,14 @@ namespace OOP_C
             
         }
 
-        private Bank(decimal balans)
+        public Bank(decimal balans)
         {
             CheckNumber = Number.ToString();
             Balans = balans;
 
         }
 
-        private Bank( CheckType type)
+        public Bank( CheckType type)
         {
             CheckNumber = Number.ToString();
             Type = type;
@@ -56,154 +56,48 @@ namespace OOP_C
         /// Снятие со счета
         /// </summary>
         /// <param name="howMuch"></param>
-       public  void Snuatie(decimal howMuch)
+       public  bool Snuatie(decimal howMuch)
         {
             if (howMuch <= Balans && howMuch > 0)
             {
                 Balans -= howMuch;
+                return true;
+
             }
+            return false;
         }
 
         /// <summary>
         /// Пополнение счета
         /// </summary>
         /// <param name="howMuch"></param>
-        public void Popolnit(decimal howMuch)
+        public bool Popolnit(decimal howMuch)
         {
             if (howMuch > 0)
             {
                 Balans += howMuch;
+                return true;
             }
+            return false;
         }
         /// <summary>
-        /// Перевод денег
+        /// Перевод 
         /// </summary>
-        /// <param name="bank">Выбранный банковский счет</param>
+        /// <param name="bank"></param>
         /// <param name="howMuch"></param>
-        /// <param name="sum"></param>
-        /// <param name="bank1">Счет для перевода</param>
-        /// <param name="bank2">Счет для перевода</param>
-        /// <param name="bank3">Счет для перевода</param>
-        public void Perevod(ref Bank bank, decimal howMuch, decimal sum , ref Bank bank1, ref Bank bank2, ref Bank bank3)
+        /// <returns></returns>
+        public bool Perevod(ref Bank bank, decimal howMuch)
         {
-            if (howMuch <= Balans && howMuch > 0)
+            if(bank != null && howMuch > 0)
             {
-                Console.WriteLine("введите номер счета, куда перевести деньги");
-                string b = Console.ReadLine();
-
-               // Bank bank4 = null;
-
-                switch (b)
+                if(howMuch < bank.Balans)
                 {
-                    case "1":
-                        bank.Snuatie(sum);
-                        bank1.Popolnit(sum);
-                        Console.WriteLine(bank);
-                        Console.WriteLine(bank1);
-
-                        break;
-                    case "2":
-                        bank.Snuatie(sum);
-                        bank2.Popolnit(sum);
-                        Console.WriteLine(bank);
-                        Console.WriteLine(bank2);
-                        break;
-                    case "3":
-                        bank.Snuatie(sum);
-                        bank3.Popolnit(sum);
-                        Console.WriteLine(bank);
-                        Console.WriteLine(bank3);
-
-                        break;
-
+                    bank.Balans -= howMuch;
+                    Balans += howMuch;
+                    return true;
                 }
-
-
             }
-        }
-
-       
-
-        public static void Main(string[] args)
-        {
-           
-            Console.WriteLine("============================================================");
-            Console.WriteLine("Для банковских операций нажмите 1\nДля реверса строки нажмите 2\nДля других операций со строками нажмите 3");
-            string d = Console.ReadLine();
-            
-            switch (d)
-            {
-                case "1":
-                    Console.Clear();
-                    Bank bank1 = new Bank("ы", 80000000, CheckType.Savings);
-                    Console.WriteLine(bank1);
-                    Bank bank2 = new Bank(CheckType.Current);
-                    Console.WriteLine(bank2);
-                    Bank bank3 = new Bank(25000000);
-                    Console.WriteLine(bank3);
-
-
-                    Console.WriteLine("============================================================");
-                    Console.WriteLine("введите номер счета");
-                    string a = Console.ReadLine();
-
-
-                    Bank bank = null;
-
-                    switch (a)
-                    {
-                        case "1":
-                            bank = bank1;
-                            break;
-                        case "2":
-                            bank = bank2;
-                            break;
-                        case "3":
-                            bank = bank3;
-                            break;
-
-
-                    }
-                    Console.Clear();
-                    Console.WriteLine(bank);
-                    if (bank == null)
-                    {
-                        Console.WriteLine("номер счета некорректен");
-                        Console.ReadLine();
-                        return;
-                    }
-                    Console.Clear();
-                    Console.WriteLine("Введите сумму");
-                    string c = Console.ReadLine();
-                    decimal sum = decimal.Parse(c);
-
-
-                    Console.Clear();
-                    Console.WriteLine("Выберете операцию:\n1 - пополнить счет\n2 - снять деньги\n3 - перевод денег");
-                    string b = Console.ReadLine();
-                    switch (b)
-                    {
-                        case "1":
-                            bank.Popolnit(sum);
-                            break;
-                        case "2":
-                            bank.Snuatie(sum);
-                            break;
-                            case "3": bank.Perevod(ref bank, sum, sum, ref bank1, ref bank2, ref bank3);
-                            break;
-                    }
-                    Console.WriteLine(bank);
-                    Console.ReadLine();
-                    break;
-                case "2":
-                    Console.Clear();
-                    STR1.ReverseString("s");
-                    break;
-                //case "3":
-                //    STR1.SearchMail(ref st);
-                //    break;
-            }
-
+            return false;
         }
 
     }
