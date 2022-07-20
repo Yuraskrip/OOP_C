@@ -18,7 +18,7 @@ namespace OOP_C
         /// <param name="checkNumber">Номер счета</param>
         /// <param name="balans">Баланс</param>
         /// <param name="type">Тип банковского счета</param>
-        public Bank(string checkNumber, decimal balans, CheckType type)
+        public Bank(decimal balans, CheckType type)
         {
             CheckNumber = Number.ToString();
             Balans = balans;
@@ -86,7 +86,7 @@ namespace OOP_C
         /// <param name="bank"></param>
         /// <param name="howMuch"></param>
         /// <returns></returns>
-        public bool Perevod(ref Bank bank, decimal howMuch)
+        public bool Perevod(Bank bank, decimal howMuch)
         {
             if(bank != null && howMuch > 0)
             {

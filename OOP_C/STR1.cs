@@ -38,14 +38,14 @@ namespace OOP_C
         /// </summary>
         public static void SpisokEmail()
         {
-            string sosiska = "../../../../Email.txt";
-            File.Delete(sosiska);
+            string stroka = "../../../../Email.txt";
+            File.Delete(stroka);
             string[] lines = File.ReadAllLines("../../../../firstEmail.txt");
             for (int i = 0; i < lines.Length; i++)
             {
                 string line = lines[i];
                 SearchMail(ref line);
-                File.AppendAllText(sosiska, line.Trim() + "\n");
+                File.AppendAllText(stroka, line.Trim() + "\n");
             }
             
         }

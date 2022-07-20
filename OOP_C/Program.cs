@@ -27,7 +27,7 @@ public class Program
         {
             case "1":
                 Console.Clear();
-                Bank bank1 = new Bank("ы", 80000000, CheckType.Savings);
+                Bank bank1 = new Bank(80000000, CheckType.Savings);
                 Console.WriteLine(bank1);
                 Bank bank2 = new Bank(CheckType.Current);
                 Console.WriteLine(bank2);
@@ -81,7 +81,7 @@ public class Program
                         bank.Snuatie(sum);
                         break;
                     case "3":
-                        bank.Perevod(ref bank, sum);
+                        bank.Perevod(bank, sum);
                         break;
                 }
                 Console.WriteLine(bank);
